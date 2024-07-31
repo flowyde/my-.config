@@ -1,0 +1,170 @@
+{
+    "layer": "top",
+
+    "position": "top",
+
+    "modules-left":
+    [
+      "hyprland/window"
+    ],
+
+    "modules-center":
+    [
+      "hyprland/workspaces",
+      "custom/clock-icon",
+      "clock"
+    ],
+
+    "modules-right":
+    [
+      "group/power",
+    "custom/notifications",
+    "tray",
+    "custom/audio-icon",
+    "pulseaudio"
+  ],
+
+    "custom/apps": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "pkill rofi || rofi -show drun"
+    },
+
+    "custom/notifications": {
+      "tooltip": false,
+      "format": " {icon} ",
+      "format-icons": {
+        "notification": "",
+        "none": "",
+        "dnd-notification": "",
+        "dnd-none": "",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "",
+        "dnd-inhibited-none": ""
+      },
+
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+    },
+
+    "custom/shutdown": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/Scripts/Power/Power -s"
+    },
+
+    "custom/reboot": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/Scripts/Power/Power -r"
+    },
+
+    "custom/logout": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/Scripts/Power/Power -l"
+    },
+
+    "custom/firmware": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "$HOME/Scripts/Power/Power -f"
+    },
+
+    "custom/suspend": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "hyprlock & sleep 1; systemctl suspend"
+    },
+
+    "custom/divider": {
+      "format": "|",
+      "tooltip": "flase"
+    },
+
+    "custom/power-left-end": {
+      "format": " ",
+      "tooltip": false,
+    },
+
+    "group/power": {
+      "orientation": "horizontal",
+      "drawer": {
+        "transition-duration": 600,
+        "transition-left-to-right": false,
+      },
+      "modules": [
+        "custom/shutdown",
+        "custom/firmware",
+        "custom/divider",
+        "custom/suspend",
+        "custom/divider",
+        "custom/logout",
+        "custom/divider",
+        "custom/reboot",
+        "custom/divider",
+      ]
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "rotate": 0,
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "disable-scroll": false,
+        "on-scroll-up": "hyprctl dispatch workspace -1",
+        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "persistent-workspaces": {
+	    "3":[],
+	    "4":[],
+	    "5":[]
+        }
+    },
+
+    "hyprland/window": {
+        "format": "  {}",
+        "rewrite": {
+        "(.*)Mozilla Firefox": "󰈹  Firefox",
+        "(.*)Spotify": "󰓇  Spotify",
+        "(.*)Steam": "󰓓  Steam",
+        "(.*)Code - OSS": "󰨞  Code",
+        "(.*)Thunar": "󰉋  Thunar"
+        },
+        "separate-outputs": true,
+        "max-length": 1000
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5
+    },
+
+    "custom/clock-icon": {
+      "format": "",
+      "tooltip": false
+    },
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d-%m-%Y}"
+    }, 
+
+    "custom/audio-icon": {
+      "format": "󰓃",
+      "tooltip": false
+    },
+
+    "pulseaudio": {
+      "format": "{volume}%",
+      "tooltip": false,
+      "scroll-step": 1,
+    },
+}
